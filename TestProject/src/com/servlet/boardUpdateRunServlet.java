@@ -43,7 +43,7 @@ public class boardUpdateRunServlet extends HttpServlet {
 		String title = request.getParameter("b_title");
 		String writer = request.getParameter("b_writer");
 		String con = request.getParameter("b_con");
-		System.out.println("여기까지는 실행");
+		
 		int result = dao.updateBoard(no, title, writer, con);
 		PrintWriter out = response.getWriter();
 		if(result > 0) {

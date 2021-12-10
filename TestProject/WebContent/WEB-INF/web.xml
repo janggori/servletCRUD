@@ -56,7 +56,7 @@
 	</servlet>
 	
 	<servlet-mapping>
-	  	<servlet-name>boardUpdate</servlet-name>
+	  	<servlet-name>boardUpdateRun</servlet-name>
 	  	<url-pattern>/boardUpdateRun.do</url-pattern>
 	</servlet-mapping>
   	
