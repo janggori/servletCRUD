@@ -59,5 +59,15 @@
 	  	<servlet-name>boardUpdateRun</servlet-name>
 	  	<url-pattern>/boardUpdateRun.do</url-pattern>
 	</servlet-mapping>
+
+  	<servlet>
+		<servlet-name>boardDelete</servlet-name>
+		<servlet-class>com.servlet.boardDeleteServlet</servlet-class>  	
+	</servlet>
+	
+	<servlet-mapping>
+	  	<servlet-name>boardDelete</servlet-name>
+	  	<url-pattern>/boardDelete.do</url-pattern>
+	</servlet-mapping>
   	
 </web-app>
