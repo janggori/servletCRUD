@@ -13,7 +13,7 @@ public class DbConnection {
 		Connection conn = null;
 		
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 			String url = "jdbc:mysql://localhost/mydb?serverTimezone=UTC";
 			String id = "user";
 			String pw = "123412341234";

@@ -25,7 +25,7 @@ public class BoardDaoImpl implements BoardDao {
 		try {
 			stmt = conn.createStatement();
 			
-			String sql = "SELECT B_NO,B_TITLE,B_WRITER, DATE_FORMAT(B_DATE, \\\"%y-%m-%d\\\") AS B_DATE, B_CON, B_HITS FROM BOARD WHERE B_DEL ='N' ORDER BY B_NO DESC";
+			String sql = "SELECT B_NO,B_TITLE,B_WRITER, DATE_FORMAT(B_DATE, \"%y-%m-%d\") AS B_DATE, B_CON, B_HITS FROM BOARD WHERE B_DEL ='N' ORDER BY B_NO DESC";
 			
 			rs = stmt.executeQuery(sql);
 			
@@ -159,4 +159,26 @@ public class BoardDaoImpl implements BoardDao {
 		return result;
 	}
 
+	@Override
+	public int viewCntUp(int no) {
+		int result = 0;
+		Connection conn = DbConnection.getDbConnection();
+		PreparedStatement pstmt = null;
+		
+		try {
+			String sql = "UPDATE BOARD SET B_HITS= B_HITS+1 WHERE B_NO = ?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, no);			
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DbConnection.close(pstmt);
+			DbConnection.close(conn);
+		}
+		
+		return result;
+	}
 }

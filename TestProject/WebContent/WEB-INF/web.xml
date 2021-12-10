@@ -9,4 +9,55 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  
+	<filter>
+	    <filter-name>EncodingFilter</filter-name>
+	    <filter-class>com.filter.EncodingFilter</filter-class>
+	</filter>
+
+ 	<filter-mapping>
+	    <filter-name>EncodingFilter</filter-name>
+	    <url-pattern>/*</url-pattern>
+	</filter-mapping>
+  	
+  	<servlet>
+		<servlet-name>boardList</servlet-name>
+		<servlet-class>com.servlet.boardListServlet</servlet-class>  	
+	</servlet>
+	
+	<servlet-mapping>
+	  	<servlet-name>boardList</servlet-name>
+	  	<url-pattern>/boardList.do</url-pattern>
+	</servlet-mapping>
+  	
+  	<servlet>
+		<servlet-name>boardDtl</servlet-name>
+		<servlet-class>com.servlet.boardDtlServlet</servlet-class>  	
+	</servlet>
+	
+	<servlet-mapping>
+	  	<servlet-name>boardDtl</servlet-name>
+	  	<url-pattern>/boardDtl.do</url-pattern>
+	</servlet-mapping>
+	
+  	<servlet>
+		<servlet-name>boardUpdate</servlet-name>
+		<servlet-class>com.servlet.boardUpdateServlet</servlet-class>  	
+	</servlet>
+	
+	<servlet-mapping>
+	  	<servlet-name>boardUpdate</servlet-name>
+	  	<url-pattern>/boardUpdate.do</url-pattern>
+	</servlet-mapping>
+
+  	<servlet>
+		<servlet-name>boardUpdateRun</servlet-name>
+		<servlet-class>com.servlet.boardUpdateRunServlet</servlet-class>  	
+	</servlet>
+	
+	<servlet-mapping>
+	  	<servlet-name>boardUpdate</servlet-name>
+	  	<url-pattern>/boardUpdateRun.do</url-pattern>
+	</servlet-mapping>
+  	
 </web-app>
