@@ -31,11 +31,15 @@ public class boardListServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+      throws ServletException, IOException 
+	{
 		PrintWriter out = response.getWriter();
-		BoardDao dao = new BoardDaoImpl();
-		String gbn = request.getParameter("gbn");
+		BoardDao    dao = new BoardDaoImpl();
+		
+		String gbn        = request.getParameter("gbn");
 		String searchText = request.getParameter("search_text");
+		
 		List<BoardDto> list = dao.boardList(gbn, searchText);
 		
 		out.println("<!DOCTYPE html>           ");
@@ -106,7 +110,9 @@ public class boardListServlet extends HttpServlet {
 		out.println("			</tr>                                                                                ");
 		out.println("		</thead>                                                                                 ");
 		out.println("		<tbody>                                                                                  ");
-		for(BoardDto dto : list) {
+		
+		for ( BoardDto dto : list ) 
+		{
 			out.println("<tr>                                    ");
 			out.println("	<td>"+dto.getB_no()+"</td>			                 ");
 			out.println("	<td id=\"title\" no=\""+dto.getB_no()+"\">"+ dto.getB_title() +"</td>");			
