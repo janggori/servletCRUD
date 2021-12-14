@@ -5,7 +5,7 @@ import java.util.List;
 import com.board.dto.BoardDto;
 
 public interface BoardDao {
-	public List<BoardDto> boardList();
+	public List<BoardDto> boardList(String gbn, String searchText);
 	
 	public int insertBoard(String title, String writer, String con);
 	

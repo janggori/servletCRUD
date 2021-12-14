@@ -34,7 +34,9 @@ public class boardListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
 		BoardDao dao = new BoardDaoImpl();
-		List<BoardDto> list = dao.boardList();
+		String gbn = request.getParameter("gbn");
+		String searchText = request.getParameter("search_text");
+		List<BoardDto> list = dao.boardList(gbn, searchText);
 		
 		out.println("<!DOCTYPE html>           ");
 		out.println("<html>                    ");
@@ -82,7 +84,12 @@ public class boardListServlet extends HttpServlet {
 		out.println("	<button type=\"button\" id=\"write_btn\">글 작성</button>                                                          ");
 		out.println("</div>                                                                                             ");
 		out.println("<div class=\"search_wrap\">                                                                          ");
-		out.println("	<form action=\"\">		                                                                        ");
+		out.println("	<form action=\"boardList.do\" id=\"search_form\" method=\"get\">		                                                                        ");
+		out.println("		<select name=\"gbn\">                                                                            ");
+		out.println("			<option value=\"0\">전체</option>                                                            ");
+		out.println("			<option value=\"1\">제목</option>                                                            ");
+		out.println("			<option value=\"2\">작성자</option>                                                          ");
+		out.println("		</select>                                                                                      ");
 		out.println("		<input type=\"text\" id=\"search_text\" name=\"search_text\">                                     ");
 		out.println("		<button type=\"button\">검색</button>	                                                        ");
 		out.println("	</form>                                                                                         ");
