@@ -15,7 +15,7 @@ import com.jdbc.DbConnection;
 public class BoardDaoImpl implements BoardDao {
 
 	@Override
-	public List<BoardDto> boardList(String gbn, String searchText) {
+	public List<BoardDto> boardList(String searchType, String searchText) {
 		List<BoardDto> list = new ArrayList<BoardDto>();
 		
 		Connection conn = DbConnection.getDbConnection();
@@ -26,17 +26,17 @@ public class BoardDaoImpl implements BoardDao {
 			
 			String sql = "SELECT B_NO,B_TITLE,B_WRITER, DATE_FORMAT(B_DATE, \"%y-%m-%d\") AS B_DATE, B_CON, B_HITS FROM BOARD WHERE B_DEL ='N' ORDER BY B_NO DESC";
 			pstmt = conn.prepareStatement(sql);		
-			if((gbn != null)&&(searchText !=null)) {
-				if(gbn.equals("0")) {
+			if((searchType != null)&&(searchText !=null)) {
+				if(searchType.equals("0")) {
 					sql = "SELECT B_NO,B_TITLE,B_WRITER, DATE_FORMAT(B_DATE, \"%y-%m-%d\") AS B_DATE, B_CON, B_HITS FROM BOARD WHERE B_DEL ='N' AND (B_TITLE LIKE CONCAT('%', ? ,'%') OR B_WRITER LIKE CONCAT('%',?,'%')) ORDER BY B_NO DESC";					
 					pstmt = conn.prepareStatement(sql);
 					pstmt.setString(1, searchText);
 					pstmt.setString(2, searchText);
-				} else if(gbn.equals("1")) {
+				} else if(searchType.equals("1")) {
 					sql = "SELECT B_NO,B_TITLE,B_WRITER, DATE_FORMAT(B_DATE, \"%y-%m-%d\") AS B_DATE, B_CON, B_HITS FROM BOARD WHERE B_DEL ='N' AND B_TITLE LIKE CONCAT('%',?,'%') ORDER BY B_NO DESC";					
 					pstmt = conn.prepareStatement(sql);		
 					pstmt.setString(1, searchText);
-				} else if(gbn.equals("2")) {
+				} else if(searchType.equals("2")) {
 					sql = "SELECT B_NO,B_TITLE,B_WRITER, DATE_FORMAT(B_DATE, \"%y-%m-%d\") AS B_DATE, B_CON, B_HITS FROM BOARD WHERE B_DEL ='N' AND B_WRITER LIKE CONCAT('%',?,'%') ORDER BY B_NO DESC";										
 					pstmt = conn.prepareStatement(sql);		
 					pstmt.setString(1, searchText);
