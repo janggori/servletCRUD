@@ -7,23 +7,38 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
 public class DbConnection {
 	
 	public static Connection getDbConnection() {
 		Connection conn = null;
 		
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			String url = "jdbc:mysql://localhost/mydb?serverTimezone=UTC";
-			String id = "user";
-			String pw = "123412341234";
+			InitialContext initCtx = new InitialContext();
 			
-			conn = DriverManager.getConnection(url, id, pw);
-		} catch (ClassNotFoundException e) {
-			 e.printStackTrace();
-		} catch (SQLException e) {
-			 e.printStackTrace();
+			DataSource ds = (DataSource) initCtx.lookup("java:comp/env/jdbc/mysql");
+			conn = ds.getConnection();
+			
+//			Class.forName("com.mysql.cj.jdbc.Driver");
+//			String url = "jdbc:mysql://localhost/mydb?serverTimezone=UTC";
+//			String id = "user";
+//			String pw = "123412341234";
+			
+//			conn = DriverManager.getConnection(url, id, pw);
+			
 		} 
+//		catch (ClassNotFoundException e) {
+//			 e.printStackTrace();
+//		} 
+		catch (SQLException e) {
+			 e.printStackTrace();
+		} catch (NamingException e) {
+			e.printStackTrace();
+		}
 		
 		return conn;
 	}
