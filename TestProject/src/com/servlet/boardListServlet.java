@@ -37,8 +37,8 @@ public class boardListServlet extends HttpServlet {
 	{
 		BoardDao dao = new BoardDaoImpl();
 		
-		String searchType = request.getParameter("searchType");
-		String searchText = request.getParameter("searchText");
+		String searchType = request.getParameter("gbn");
+		String searchText = request.getParameter("search_text");
 		
 		List<BoardDto> list = dao.boardList(searchType, searchText);
 		request.setAttribute("list", list);
